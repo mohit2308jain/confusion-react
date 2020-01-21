@@ -1,10 +1,11 @@
 import React from 'react';
+import Menu from './components/MenuComponent';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Navbar dark color='primary'>
         <div className='container'>
           <NavbarBrand href='/'>
@@ -12,6 +13,7 @@ function App() {
           </NavbarBrand>
         </div>
       </Navbar>
+      <Menu/>
     </div>
   );
 }
