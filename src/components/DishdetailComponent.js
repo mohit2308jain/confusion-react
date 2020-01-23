@@ -29,9 +29,9 @@ class DishDetail extends React.Component{
       if(dish!=null){
         const comment = this.props.dish.comments.map((comment) => {
           return(
-              <div key={comment.id}>
-                <li style={{padding: '10px 10px 10px 0px'}}>{comment.comment}</li>
-                <li style={{padding: '10px 10px 10px 0px'}}>{`--${new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}, Oct 17,2020`}</li>
+              <div key={comment.id} style={{padding: '10px 10px 10px 0px'}}>
+                <li>{comment.comment}</li>
+                <li>{`--${new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}, Oct 17,2020`}</li>
               </div>
           ) 
         })
