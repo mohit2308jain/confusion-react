@@ -1,3 +1,6 @@
+This repo is made as part of assignment for the Front-End Web Development with React course on 'coursera.org'.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
