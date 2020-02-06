@@ -19,8 +19,8 @@ const RenderComments = ({comments}) => {
     const comment = comments.map((comment) => {
       return(
           <div key={comment.id}>
-            <li style={{padding: '10px 10px 10px 0px'}}>{comment.comment}</li>
-            <li style={{padding: '10px 10px 10px 0px'}}>{`-- ${comment.author} , ${new Intl.DateTimeFormat('en-IN', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}`}</li>
+            <li className="p-2">{comment.comment}</li>
+            <li className="p-2">{`-- ${comment.author} , ${new Intl.DateTimeFormat('en-IN', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}`}</li>
           </div>
       ) 
     })
