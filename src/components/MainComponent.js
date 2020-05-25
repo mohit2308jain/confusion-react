@@ -4,7 +4,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 
-import { addComment, fetchDishes } from '../redux/ActionCreators';
+import { postComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
 
 import Menu from './MenuComponent';
 import Contact from './ContactComponent';
@@ -25,15 +25,26 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
-    
     fetchDishes: () => { 
       return dispatch(fetchDishes());
     },
 
     resetFeedbackForm: () => { 
       return dispatch(actions.reset('feedback'))
+    },
+
+    fetchComments: () => { 
+      return dispatch(fetchComments());
+    },
+
+    fetchPromos: () => { 
+      return dispatch(fetchPromos());
+    },
+    
+    postComment: (dishId, rating, author, comment) => {
+      return dispatch(postComment(dishId, rating, author, comment))
     }
+
   })
 }
 
@@ -41,6 +52,8 @@ class Main extends React.Component {
 
   componentDidMount() {
     this.props.fetchDishes();
+    this.props.fetchComments();
+    this.props.fetchPromos();
   }
 
   render() {
@@ -48,11 +61,13 @@ class Main extends React.Component {
     const DishWithId = ({match}) => {
       return(
           <DishDetail 
-            dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
-            isLoading={this.props.dishes.isLoading}
-            errMess={this.props.dishes.errMess}
-            comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} 
-            addComment={this.props.addComment}/>
+              dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
+              isLoading={this.props.dishes.isLoading}
+              errMess={this.props.dishes.errMess}
+              comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
+              commentsErrMess={this.props.comments.errMess}
+              postComment={this.props.postComment}
+          />
       );
     };
 
@@ -61,8 +76,10 @@ class Main extends React.Component {
           <Home 
               dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
               dishesLoading={this.props.dishes.isLoading}
-              dishesErrMess={this.props.dishes.errMess}
-              promotion={this.props.promotions.filter((promo) => promo.featured)[0]}
+              dishErrMess={this.props.dishes.errMess}
+              promotion={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
+              promoLoading={this.props.promotions.isLoading}
+              promoErrMess={this.props.promotions.errMess}
               leader={this.props.leaders.filter((leader) => leader.featured)[0]}
           />
       );
