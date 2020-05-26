@@ -225,6 +225,14 @@
       "comment": "jj",
       "date": "2020-05-26T09:42:35.916Z",
       "id": 22
+    },
+    {
+      "dishId": 2,
+      "rating": "5",
+      "author": "Mohit Jin",
+      "comment": "njn\n",
+      "date": "2020-05-26T09:51:09.153Z",
+      "id": 23
     }
   ],
   "promotions": [
